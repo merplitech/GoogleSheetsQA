@@ -1,4 +1,4 @@
-const data = function () {
+const sendLineNotify = () => {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName("เปลี่ยนชื่อชีต"); // ชื่อชีต
@@ -6,7 +6,7 @@ const data = function () {
   const names = new Set(data.map(c => c[0]));
   const lineToken = "แก้ Line Token ตรงนี้"; // Line Notify Token
 
-  const lineSender = (message, token) => {
+  const _lineSender = (message, token) => {
     var formData = {
       'message': message,
     };
@@ -24,11 +24,11 @@ const data = function () {
     if (!name) return;
 
     const group = data.filter(r => r[0] == name);
-    const message = group.map(c => `${c[1]} ${c[2]}`)
+    const message = group.map(c => `${c[1]} ${c[2]}`);
 
     let text = name;
     text = `\n${name}\n${message.join("\n")}`;
 
-    lineSender(text,lineToken);
+    _lineSender(text,lineToken);
   }
 }
