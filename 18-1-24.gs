@@ -7,10 +7,10 @@ const sendLineNotify = () => {
   const lineToken = "แก้ Line Token ตรงนี้"; // Line Notify Token
 
   const _lineSender = (message, token) => {
-    var formData = {
+    const formData = {
       'message': message,
     };
-    var options = {
+    const options = {
       'method': 'post',
       'headers': { 'Authorization': "Bearer " + token },
       'contentType': 'application/x-www-form-urlencoded',
