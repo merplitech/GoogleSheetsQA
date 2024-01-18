@@ -25,10 +25,9 @@ function sendLineNotify() {
     if (!name) continue;
 
     const group = data.filter(r => r[0] == name);
-    const message = group.map(c => `${c[1]} ${c[2]}`);
+    const message = group.map(c => `${c[1]} ${c[2]}`)
 
-    let text = name;
-    text = `\n${name}\n${message.join("\n")}`;
+    const text = `\n${name}\n${message.join("\n")}`;
 
     lineSender(text, lineToken);
   }
