@@ -1,10 +1,10 @@
 function sendLineNotify() {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName("81");
-  const data = sheet.getRange("I7:K").getValues();
+  const sheet = ss.getSheetByName("แก้ชื่อชีต"); // eg: "สรุปยอดขาย"
+  const data = sheet.getRange("แก้ช่วงข้อมูล").getValues(); // eg: A1:C
   const names = new Set(data.map(c => c[0]));
-  const lineToken = "bUPgnvsHeH6MXy6zHGMtnq16bqFPyri77inr0sK5MGI";
+  const lineToken = "แก้ Line Token ตรงนี้"; // eg: "aaaaaaaaaaaaaasgsb333Zx2"
 
   const lineSender = (message, token) => {
     
