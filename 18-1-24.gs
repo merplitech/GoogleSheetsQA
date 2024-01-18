@@ -1,12 +1,13 @@
-const sendLineNotify = () => {
+function sendLineNotify() {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName("เปลี่ยนชื่อชีต"); // ชื่อชีต
-  const data = sheet.getRange("เปลี่ยนช่วงข้อมูล").getValues(); // ช่วงข้อมูล
+  const sheet = ss.getSheetByName("81");
+  const data = sheet.getRange("I7:K").getValues();
   const names = new Set(data.map(c => c[0]));
-  const lineToken = "แก้ Line Token ตรงนี้"; // Line Notify Token
+  const lineToken = "bUPgnvsHeH6MXy6zHGMtnq16bqFPyri77inr0sK5MGI";
 
-  const _lineSender = (message, token) => {
+  const lineSender = (message, token) => {
+    
     const formData = {
       'message': message,
     };
@@ -19,16 +20,16 @@ const sendLineNotify = () => {
     UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
   }
 
-  for (const name of Array.from(names)) {
+  for (const name of names) {
 
-    if (!name) return;
+    if (!name) continue;
 
     const group = data.filter(r => r[0] == name);
-    const message = group.map(c => `${c[1]} ${c[2]}`);
+    const message = group.map(c => `${c[1]} ${c[2]}`)
 
     let text = name;
     text = `\n${name}\n${message.join("\n")}`;
 
-    _lineSender(text,lineToken);
+    lineSender(text, lineToken);
   }
 }
