@@ -140,7 +140,7 @@ function sendLineNotify() {
   const time = _timeFormat(timeFormat, new Date());
 
 
-  const group = data.filter(r => r[sendDate] != "" && _timeFormat(dateFormat, r[sendDate]) == today)
+  const _group = data.filter(r => r[sendDate] != "" && _timeFormat(dateFormat, r[sendDate]) == today)
 
   const names = new Set(group.map(c => c[company]));
 
@@ -148,7 +148,7 @@ function sendLineNotify() {
 
     if (!name) continue;
 
-    const group = data.filter(r => r[company] == name && r[sendDate] != "" && r[sendTime] != "");
+    const group = _group.filter(r => r[company] == name && r[sendDate] != "" && r[sendTime] != "");
 
     const message = group.map(r => `${r[items]} จำนวน ${r[qty]} ${r[unit]}\n${r[pr]}\n`);
 
